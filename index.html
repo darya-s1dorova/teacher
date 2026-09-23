@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101112">
+<title>TEACHER.EXE — С Днём учителя!</title>
+<style>
+:root{--bg:#101112;--panel:#17191a;--line:#45484a;--white:#f7f7f4;--muted:#a7aaab;--lime:#d6ff4b;--warn:#ffd56a}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#0b0c0d;color:var(--white)}
+body{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;padding:clamp(12px,3vw,32px)}
+button{font:inherit}
+.app{width:min(900px,100%);margin:0 auto;background:var(--bg);border:1px solid #36393a;border-radius:16px;overflow:hidden;min-height:min(680px,calc(100dvh - 64px))}
+.chrome{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid #333638}
+.dot{width:12px;height:12px;border-radius:50%;background:#555;flex:0 0 auto}
+.chrome-title{margin-left:6px;color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.screen{display:none;min-height:610px;padding:clamp(22px,5vw,48px);color:#fff}
+.screen.active{display:flex;flex-direction:column}
+.tiny{font-size:12px;letter-spacing:.09em;text-transform:uppercase}
+.lime{color:var(--lime)} .warn{color:var(--warn)} .muted{color:var(--muted)}
+.big{font-size:clamp(38px,9vw,78px);line-height:.94;font-weight:900;letter-spacing:-.06em;color:#fff;margin:0 0 24px}
+h2{color:#fff;font-size:clamp(22px,4vw,32px);line-height:1.15;margin:0 0 20px}
+p{line-height:1.55}
+.cursor{display:inline-block;width:.16em;height:.92em;background:var(--lime);vertical-align:-.05em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.btn{min-height:50px;border:1px solid #4a4d4f;border-radius:9px;padding:11px 16px;background:#191b1c;color:#f5f5f2;font-weight:800;cursor:pointer;touch-action:manipulation}
+.btn:hover,.btn:focus-visible{border-color:var(--lime);color:var(--lime);outline:none}
+.primary{background:var(--lime);color:#101112;border-color:var(--lime)}
+.primary:hover,.primary:focus-visible{color:#101112;filter:brightness(.94)}
+.push{margin-top:auto;align-self:flex-start}
+.window{border:1px solid var(--line);border-radius:11px;background:var(--panel);padding:20px;color:#fff}
+.rows{display:grid;gap:15px}
+.load-head{display:flex;justify-content:space-between;gap:16px;font-size:14px;margin-bottom:7px}
+.bar{height:9px;background:#2b2d2e;border-radius:999px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--lime);border-radius:999px;transition:width .55s ease}
+.tea-note{font-size:12px;margin-top:6px;color:var(--warn)}
+.activity{display:grid;gap:13px}
+.escape-zone{position:relative;min-height:150px;border:1px dashed #3d4041;border-radius:11px;margin-top:18px;padding:14px;overflow:hidden}
+#giveup{position:absolute;left:14px;top:72px;max-width:calc(100% - 28px)}
+#continue{position:absolute;right:14px;top:72px}
+.log{display:grid;gap:13px;color:#fff}
+.error{margin-top:24px}
+.thanks-title{font-size:clamp(18px,3vw,22px);font-weight:800;margin:0 0 20px;color:#fff}
+.thanks-list{display:flex;flex-direction:column;gap:10px}
+.thanks-line{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;font-size:16px;line-height:1.55;color:#fff}
+.thanks-icon{width:30px;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+.final-greeting{font-size:clamp(22px,4vw,30px);font-weight:900;color:var(--lime);margin:2px 0 26px}
+.hidden{display:none!important}
+@media(max-width:600px){
+ body{padding:10px}
+ .app{min-height:calc(100dvh - 20px);border-radius:12px}
+ .screen{min-height:calc(100dvh - 68px);padding:22px 18px}
+ .escape-zone{min-height:205px}
+ #continue{top:auto;right:12px;bottom:12px}
+ #giveup{left:12px;top:65px}
+ .btn{min-height:52px}
+ .thanks-line{grid-template-columns:28px minmax(0,1fr);gap:8px}
+}
+@media(prefers-reduced-motion:reduce){.fill{transition:none}.cursor{animation:none}}
+</style>
+</head>
+<body>
+<main class="app" id="app">
+  <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="chrome-title">teacher.exe / system</span></div>
+
+  <section class="screen active" data-screen="start">
+    <div class="tiny lime" style="margin-bottom:22px">SYSTEM READY // 2026</div>
+    <div class="big">TEACHER<br>.EXE<span class="cursor"></span></div>
+    <p class="muted" style="max-width:620px">Система готова к запуску. Для продолжения требуется преподаватель.</p>
+    <button class="btn primary push" id="start">[ ЗАПУСТИТЬ ПРЕПОДАВАТЕЛЯ ]</button>
+  </section>
+
+  <section class="screen" data-screen="loading">
+    <div class="tiny lime" style="margin-bottom:12px">ИНИЦИАЛИЗАЦИЯ TEACHER.EXE</div>
+    <h2>Проверяем системные компоненты</h2>
+    <div class="rows" id="loadRows"></div>
+    <div class="muted" id="loadStatus" style="margin-top:auto">Подготовка...</div>
+  </section>
+
+  <section class="screen" data-screen="students">
+    <div class="tiny warn" style="margin-bottom:14px">⚠ ОБНАРУЖЕНА АКТИВНОСТЬ СТУДЕНТОВ</div>
+    <div class="window activity">
+      <div>37 несданных работ</div><div>14 вопросов «А это на оценку?»</div>
+      <div>8 человек не поняли задание</div><div>1 человек вообще не знает, какая сейчас пара</div>
+    </div>
+    <button class="btn primary push" id="deal">[ РАЗОБРАТЬСЯ ]</button>
+  </section>
+
+  <section class="screen" data-screen="choice">
+    <div class="tiny warn" style="margin-bottom:14px">КРИТИЧЕСКАЯ НАГРУЗКА</div>
+    <h2>Продолжить преподавательскую деятельность?</h2>
+    <p class="muted" id="escapeMessage">Выберите действие</p>
+    <div class="escape-zone" id="escapeZone">
+      <button class="btn" id="giveup">[ СДАТЬСЯ ]</button>
+      <button class="btn primary" id="continue">[ ПРОДОЛЖИТЬ ]</button>
+    </div>
+  </section>
+
+  <section class="screen" data-screen="recovery">
+    <div class="tiny lime" style="margin-bottom:14px">ВОССТАНОВЛЕНИЕ СИСТЕМЫ</div>
+    <h2>Преподаватель выбрал «Продолжить»</h2>
+    <div class="log" id="recoveryLog"></div>
+    <div class="window error hidden" id="infinity">
+      <div class="tiny warn" style="margin-bottom:8px">SYSTEM ERROR</div>
+      <strong>Не удалось определить максимальный уровень терпения</strong>
+      <div class="lime" style="margin-top:10px">Терпение = ∞</div>
+    </div>
+  </section>
+
+  <section class="screen" data-screen="final">
+    <div class="tiny lime" style="margin-bottom:18px">STATUS // STABLE</div>
+    <div class="big">TEACHER.EXE<br>УСПЕШНО РАБОТАЕТ</div>
+    <div class="window">
+      <p class="thanks-title">Спасибо, что каждый день выбираете «Продолжить»</p>
+      <div class="thanks-list">
+        <div class="thanks-line"><span class="thanks-icon">🧠</span><span>За знания</span></div>
+        <div class="thanks-line"><span class="thanks-icon">⏳</span><span>За терпение</span></div>
+        <div class="thanks-line"><span class="thanks-icon">🤝</span><span>За поддержку</span></div>
+        <div class="thanks-line"><span class="thanks-icon">🔄</span><span>И за то, что объясняете ещё раз, даже когда уже объясняли</span></div>
+      </div>
+    </div>
+    <div class="final-greeting">С Днём учителя! 💐</div>
+    <button class="btn" id="restart">[ ЗАПУСТИТЬ ЕЩЁ РАЗ ]</button>
+  </section>
+</main>
+
+<script>
+(()=>{
+ const app=document.getElementById('app'), screens=[...app.querySelectorAll('.screen')];
+ const show=n=>screens.forEach(s=>s.classList.toggle('active',s.dataset.screen===n));
+ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+ const checks=[['Загрузка знаний',100],['Проверка терпения',100],['Чувство юмора',94],['Запас чая',12],['Готовность объяснить ещё раз',100]];
+ const rows=document.getElementById('loadRows'), status=document.getElementById('loadStatus');
+
+ async function load(){
+   show('loading'); rows.innerHTML=''; status.textContent='Подготовка...';
+   for(const [name,val] of checks){
+     const w=document.createElement('div');
+     w.innerHTML=`<div class="load-head"><span>${name}</span><span class="muted">0%</span></div><div class="bar"><div class="fill"></div></div>`;
+     rows.appendChild(w); await sleep(180);
+     w.querySelector('.fill').style.width=val+'%'; w.querySelector('.muted').textContent=val+'%'; await sleep(430);
+     if(name==='Запас чая'){
+       const note=document.createElement('div'); note.className='tea-note'; note.textContent='⚠ Температура чая: уже остыл'; w.appendChild(note);
+       await sleep(1600);
+     }
+   }
+   status.innerHTML='<span class="lime">✓ TEACHER.EXE успешно запущен</span>'; await sleep(1200); show('students');
+ }
+ document.getElementById('start').addEventListener('click',load);
+ document.getElementById('deal').addEventListener('click',()=>show('choice'));
+
+ const give=document.getElementById('giveup'), zone=document.getElementById('escapeZone'), msg=document.getElementById('escapeMessage');
+ let escapes=0;
+ function escapeButton(){
+   escapes++;
+   const pad=12, maxX=Math.max(pad,zone.clientWidth-give.offsetWidth-pad), maxY=Math.max(55,zone.clientHeight-give.offsetHeight-pad);
+   give.style.left=(pad+Math.random()*Math.max(0,maxX-pad))+'px';
+   give.style.top=(45+Math.random()*Math.max(0,maxY-45))+'px';
+   const labels=['[ СДАТЬСЯ ]','[ НЕТ, СЕРЬЁЗНО? ]','[ НЕ ПОЛУЧИТСЯ ]','[ ДАЖЕ НЕ ПЫТАЙТЕСЬ ]'];
+   give.textContent=labels[Math.min(escapes,labels.length-1)];
+   msg.textContent=escapes===1?'Кажется, эта функция недоступна':escapes===2?'Система сопротивляется':'TEACHER.EXE не умеет сдаваться';
+ }
+ give.addEventListener('pointerenter',e=>{ if(e.pointerType==='mouse') escapeButton(); });
+ give.addEventListener('pointerdown',e=>{ if(e.pointerType!=='mouse'){e.preventDefault(); escapeButton();} });
+ give.addEventListener('click',e=>{e.preventDefault(); if(e.detail===0) escapeButton();});
+
+ document.getElementById('continue').addEventListener('click',async()=>{
+   show('recovery'); const log=document.getElementById('recoveryLog'), inf=document.getElementById('infinity');
+   log.innerHTML=''; inf.classList.add('hidden');
+   for(const t of ['Восстанавливаем терпение...','Завариваем чай... ✓','Отвечаем на вопросы... ✓','Проверяем работы... ✓','Объясняем ещё раз... ✓']){
+     const d=document.createElement('div'); d.textContent=t; log.appendChild(d); await sleep(600);
+   }
+   await sleep(300); inf.classList.remove('hidden'); await sleep(1800); show('final');
+ });
+ document.getElementById('restart').addEventListener('click',()=>{
+   escapes=0; give.textContent='[ СДАТЬСЯ ]'; give.style.left='14px'; give.style.top='72px'; msg.textContent='Выберите действие'; show('start');
+ });
+})();
+</script>
+</body>
+</html>
