@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101112">
 <title>TEACHER.EXE — С Днём учителя!</title>
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=bz0A7osTjcCch51d6omyYNEZKY8J0rryaGpT1qmyb3ZClYdyugSr1IAloUtsOjrfrRV2ZJiYk3WhSVbrCTHrf0Lrcjhb5wRTdV4n4nZHiRq22pzGb1O05hxXCB9HeuASc1sKYMnbmLb3ys_KBxb6tZ7a5p-MKVBl9EiU0KbIhIRB1P9ZwBdgFt0lx7wnWWmXhxeyJLsKRkbM6vWp27EpRa01Z5XXLhW22L0fSSsRue1ZX_FrYiRLEK5X0eTufRoY3ZA2Eb6g0RcIiW7SHrN-joMJHsKuClrARLb0nUKpjSf_K9BDuwHJ48Uth1VFhnFO" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jaGF0Z3B0LmNvbS9iYWNrZW5kLWFwaS9lc3R1YXJ5L2NvbnRlbnQ_aWQ9ZmlsZV8wMDAwMDAwMDM1Nzg4MWY2OGVlZDAzNTkwYzFkYTBjMCZmbj1pbmRleC5odG1sJmNkPWF0dGFjaG1lbnQmdHM9NDk3MjY2JnA9ZnMmY2lkPTEmc2lnPWY2YTVlZmRkZTI5ZDAyNWE5MjZlNWQ4ZTM2OTQ5NTFjZGRiM2Y3ZjU3MGU0NWVjZjg2ODA2N2E3OGY3NzQ0ZTAmdj0w"/><style>
+<style>
 :root{--bg:#101112;--panel:#17191a;--line:#45484a;--white:#f7f7f4;--muted:#a7aaab;--lime:#C7F000;--warn:#ffd56a}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}html,body{margin:0;min-height:100%;background:#0b0c0d;color:var(--white)}
 body{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;padding:clamp(12px,3vw,32px)}
 button{font:inherit;-webkit-appearance:none;appearance:none;border-radius:0}
-.app{width:100%;max-width:900px;margin:0 auto;background:var(--bg);border:1px solid #36393a;border-radius:16px;overflow:hidden;min-height:min(680px,calc(100vh - 64px))}
+.app{width:100%;max-width:900px;margin:0 auto;background:var(--bg);border:1px solid #36393a;border-radius:16px;overflow:hidden}
 .chrome{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid #333638}
 .dot{width:12px;height:12px;border-radius:50%;background:#555;flex:0 0 auto}
 .chrome-title{margin-left:6px;color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-.screen{display:none;min-height:610px;padding:clamp(22px,5vw,48px);color:#fff}
+.screen{display:none;min-height:520px;padding:clamp(22px,5vw,48px);color:#fff}
 .screen.active{display:flex;flex-direction:column}
 .tiny{font-size:12px;letter-spacing:.09em;text-transform:uppercase}
 .lime{color:var(--lime)} .warn{color:var(--warn)} .muted{color:var(--muted)}
@@ -53,8 +53,8 @@ p{line-height:1.55}
  h2{font-size:24px}
  .thanks-title{font-size:19px}
  .final-greeting{font-size:24px}
- .app{min-height:calc(100vh - 20px);border-radius:12px}
- .screen{min-height:calc(100vh - 68px);padding:22px 18px}
+ .app{border-radius:12px}
+ .screen{min-height:500px;padding:22px 18px}
  .escape-zone{min-height:205px}
  #continue{top:auto;right:12px;bottom:12px}
  #giveup{left:12px;top:65px}
@@ -63,6 +63,14 @@ p{line-height:1.55}
  .thanks-line{grid-template-columns:28px minmax(0,1fr);gap:8px}
 }
 @media(prefers-reduced-motion:reduce){.fill{transition:none}.cursor{animation:none}}
+
+@media(max-width:600px){
+ .screen[data-screen="start"],
+ .screen[data-screen="students"]{min-height:500px}
+ .screen[data-screen="students"] .push{margin-top:28px}
+ .screen[data-screen="start"] .push{margin-top:32px}
+}
+
 </style>
 </head>
 <body>
