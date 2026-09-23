@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101112">
 <title>TEACHER.EXE — С Днём учителя!</title>
-<style>
-:root{--bg:#101112;--panel:#17191a;--line:#45484a;--white:#f7f7f4;--muted:#a7aaab;--lime:#d6ff4b;--warn:#ffd56a}
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=R0o32COuiI9bnKIE8ktp7ji6db88IDJ17E3Vz8Zuf5nSXRfGdShIjZ5vP6HapUq1XrLRBRda_MrBLvgnbWy7BtUcCGJlXFtULIoTA1X3swDqyoTFtRyUT70MOVpQjG0h87Yg1ZcfISIHB0bT8zvKBfMXUeLnsh7H-g40PxcF1YjIpOAFwFOAkwsy8IhgAVk8S0clCGJ_5W1qxkmdhY6LK2VwzOYgD-J0_r1cPBjn_mbmdZ_8oFo_Rsf1mFIT118YlCaW3XjlI__-fqioKE7PFAT9irYmN1hWNIWWpIjtjUj-OI7FEQsJxPIZB1xmBI1G" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jaGF0Z3B0LmNvbS9iYWNrZW5kLWFwaS9lc3R1YXJ5L2NvbnRlbnQ_aWQ9ZmlsZV8wMDAwMDAwMGFiNDQ4MWY1OTkzYmZmYzQ0YWVjMzk5OCZmbj1pbmRleC5odG1sJmNkPWF0dGFjaG1lbnQmdHM9NDk3MjY2JnA9ZnMmY2lkPTEmc2lnPTQ4NmRkOWRmOTA4MjYyMGE3MmU4NDY1ZTExMjFlOTQ3NjU2MGVlMDVkNWM3ODQyMmQyZmM0NDg5ODhlNDY0NWYmdj0w"/><style>
+:root{--bg:#101112;--panel:#17191a;--line:#45484a;--white:#f7f7f4;--muted:#a7aaab;--lime:#C7F000;--warn:#ffd56a}
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:#0b0c0d;color:var(--white)}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}html,body{margin:0;min-height:100%;background:#0b0c0d;color:var(--white)}
 body{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;padding:clamp(12px,3vw,32px)}
-button{font:inherit}
+button{font:inherit;-webkit-appearance:none;appearance:none;border-radius:0}
 .app{width:min(900px,100%);margin:0 auto;background:var(--bg);border:1px solid #36393a;border-radius:16px;overflow:hidden;min-height:min(680px,calc(100dvh - 64px))}
 .chrome{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid #333638}
 .dot{width:12px;height:12px;border-radius:50%;background:#555;flex:0 0 auto}
@@ -24,7 +24,7 @@ h2{color:#fff;font-size:clamp(22px,4vw,32px);line-height:1.15;margin:0 0 20px}
 p{line-height:1.55}
 .cursor{display:inline-block;width:.16em;height:.92em;background:var(--lime);vertical-align:-.05em;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.btn{min-height:50px;border:1px solid #4a4d4f;border-radius:9px;padding:11px 16px;background:#191b1c;color:#f5f5f2;font-weight:800;cursor:pointer;touch-action:manipulation}
+.btn{min-height:50px;border:1px solid #4a4d4f;border-radius:9px;padding:11px 16px;background:#191b1c;color:#f5f5f2;font-weight:800;cursor:pointer;touch-action:manipulation;white-space:nowrap;line-height:1.2}
 .btn:hover,.btn:focus-visible{border-color:var(--lime);color:var(--lime);outline:none}
 .primary{background:var(--lime);color:#101112;border-color:var(--lime)}
 .primary:hover,.primary:focus-visible{color:#101112;filter:brightness(.94)}
@@ -54,7 +54,8 @@ p{line-height:1.55}
  .escape-zone{min-height:205px}
  #continue{top:auto;right:12px;bottom:12px}
  #giveup{left:12px;top:65px}
- .btn{min-height:52px}
+ .btn{min-height:50px;font-size:clamp(12px,3.55vw,16px);padding:10px 13px}
+ #start{width:min(100%,430px);height:58px;min-height:58px;padding:0 12px;display:flex;align-items:center;justify-content:center;white-space:nowrap;font-size:clamp(11px,3.45vw,16px);letter-spacing:0}
  .thanks-line{grid-template-columns:28px minmax(0,1fr);gap:8px}
 }
 @media(prefers-reduced-motion:reduce){.fill{transition:none}.cursor{animation:none}}
