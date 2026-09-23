@@ -1,1 +1,1 @@
-# Techer
+# Teacher
